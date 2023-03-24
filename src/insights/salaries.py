@@ -43,26 +43,21 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
 def filter_by_salary_range(
     jobs: List[dict], salary: Union[str, int]
 ) -> List[Dict]:
-    """Filters a list of jobs by salary range
 
-    Parameters
-    ----------
-    jobs : list
-        The jobs to be filtered
-    salary : int
-        The salary to be used as filter
-
-    Returns
-    -------
-    list
-        Jobs whose salary range contains `salary`
-    """
-    raise NotImplementedError
+    filtered_list = []
+    for job in jobs:
+        try:
+            if matches_salary_range(job, salary):
+                filtered_list.append(job)
+        except ValueError:
+            continue
+    return filtered_list
 
 
 if __name__ == "__main__":
+    jobs = read("data/jobs.csv")
     maxSalary = get_max_salary("data/jobs.csv")
     minSalary = get_min_salary("data/jobs.csv")
-    print(minSalary)
+    filtered_jobs = filter_by_salary_range(jobs, 5000)
     a = [1, 2, 3, 4]
-    print("123".isnumeric())
+    print(filtered_jobs)
