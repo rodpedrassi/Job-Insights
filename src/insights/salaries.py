@@ -9,28 +9,18 @@ from src.insights.jobs import (
 
 def get_max_salary(path: str) -> int:
     jobs = read(path)
-    max_salary = [
+    salaries = [
         int(job["max_salary"]) for job in jobs if job["max_salary"].isdigit()
     ]
-    return max(max_salary)
+    return max(salaries)
 
 
 def get_min_salary(path: str) -> int:
-    """Get the minimum salary of all jobs
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The minimum salary paid out of all job opportunities
-    """
-    raise NotImplementedError
+    jobs = read(path)
+    salaries = [
+        int(job["min_salary"]) for job in jobs if job["min_salary"].isdigit()
+    ]
+    return min(salaries)
 
 
 def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
@@ -80,5 +70,8 @@ def filter_by_salary_range(
 
 
 if __name__ == "__main__":
-    salaries = get_max_salary("data/jobs.csv")
-    print(salaries)
+    maxSalary = get_max_salary("data/jobs.csv")
+    minSalary = get_min_salary("data/jobs.csv")
+    print(minSalary)
+    a = [1, 2, 3, 4]
+    print(min(a))
