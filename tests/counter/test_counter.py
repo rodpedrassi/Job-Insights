@@ -6,12 +6,13 @@ from unittest.mock import mock_open, patch
 @pytest.fixture
 def file():
     return """
-    teste
-    teste
-    teste
+    Javascript
+    javascript
+    Javascript
+    Javascript
     """
 
 
-def test_words_counter(file):
+def test_counter(file):
     with patch("builtins.open", mock_open(read_data=file)):
-        assert count_ocurrences("path_mock", "teste") == 3
+        assert count_ocurrences("path_mock", "Javascript") == 4
